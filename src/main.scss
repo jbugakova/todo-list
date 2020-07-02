@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: 'Roboto', sans-serif;
+    padding: 60px 0;
+}
+
+.default-content-width {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.panel {
+    display: flex;
+    justify-content: space-between;
+
+    &__title {
+        color: #fcffff;
+        font-weight: 500;
+        font-size: 38px;
+        text-transform: capitalize;
+    }
+    &__active-tasks {
+        color: #89c8de;
+        padding-top: 10px;
+    }
+
+    &__btn {
+        padding: 10px 20px;
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        color: #8a9097;
+        cursor: pointer;
+
+        &.active {
+            color: #fcffff;
+        }
+    }
+}
+
+.add-task-form {
+    margin: 30px 0 40px;
+
+    &__input {
+        width: 50%;
+        height: 40px;
+        border-radius: 5px;
+        border: none;
+    }
+    &__button {
+        margin-left: 10px;
+        width: 100px;
+        height: 40px;
+        background-color: #0f2027;
+        border: none;
+        color: #c0feff;
+        font-size: 16px;
+        font-weight: 500;
+        text-transform: capitalize;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+.list {
+    color: #feffff;
+
+    &__item {
+        padding: 30px 0;
+        border-top: 2px solid #787d85;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    &__item:last-of-type {
+        border-bottom: 2px solid #787d85;
+    }
+
+    &__btn-done,
+    &__btn-delete {
+        width: 5%;
+        height: 30px;
+        line-height: 30px;
+        cursor: pointer;
+
+        & > img {
+            width: auto;
+            height: 100%;
+        }
+    }
+
+    &__text {
+        width: 95%;
+        text-align: left;
+        font-size: 20px;
+    }
+}
