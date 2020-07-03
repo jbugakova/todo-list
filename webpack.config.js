@@ -26,7 +26,11 @@ module.exports = {
                 test: /\.scss$/i,
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: 'style-loader',
+                        options: { 
+                            insert: 'head',
+                            injectType: 'singletonStyleTag'
+                        }
                     },
                     {
                         loader: 'css-loader',
@@ -52,6 +56,14 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             }
         ]
     }
