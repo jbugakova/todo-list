@@ -35,12 +35,15 @@ function onDropdownClick(e) {
 
 function onListClick(e) {
     const target = e.target;
-    
-    if(target.closest('.list__btn-delete')) {
+
+    if(target.closest('.list__btn')) {
         const id = target.closest('.list__item').dataset.id;
-        deleteTodo(id);
-    } else if(target.closest('.list__btn-done')) {
-        const id = target.closest('.list__item').dataset.id;
+
+        if(target.closest('.list__btn-delete')) {
+            deleteTodo(id);
+        } else if(target.closest('.list__btn-done')) {
+            toggleCompletedProperty(id);
+        }
     }
 }
 
@@ -162,4 +165,16 @@ function onDropdownOverlayClick() {
 function closeDropDown() {
     dropdownList.classList.remove('active');
     dropdownOverlay.classList.remove('active');
+}
+
+function toggleCompletedProperty(id) {
+    const currTodo = todos.find(todo => todo.id === id);
+    currTodo.completed = !currTodo.completed;
+
+    api.editTodo(currTodo);
+
+    console.log(currTodo);
+    console.log(todos);
+
+    getDOMElementByDataId(id).classList.toggle('list__item-done');
 }

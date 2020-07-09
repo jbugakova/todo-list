@@ -159,7 +159,7 @@ body {
 
         &-done {
             .list__btn-done path {
-                fill: #a79e22;
+                fill: #fff200;
             }
 
             p {
@@ -186,16 +186,17 @@ body {
         cursor: pointer;
 
         & > svg {
+            fill: #787d85;
             display: block;
             width: auto;
             height: 100%;
             width: 100%;
-            transition: .2s ease-in-out;
+            transition: .3s ease-in-out;
         }
     }
     
     &__btn-done > svg:hover {
-        fill: #a79e22;
+        fill: #fff200;
     }
 
     &__btn-delete > svg:hover {
