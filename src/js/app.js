@@ -58,7 +58,8 @@ function onAddTaskFormSubmit(e) {
 
         api.addTodo(todo)
             .then(addTodoToArray)
-            .then(renderTodo);
+            .then(renderTodo)
+            .then(displayActiveTasksQuantity);
 
         addTaskForm.reset();
     }
@@ -66,7 +67,8 @@ function onAddTaskFormSubmit(e) {
 
 function deleteTodo(id) {
     api.deleteTodo(id)
-        .then(deleteTodoFromArray);
+        .then(deleteTodoFromArray)
+        .then(displayActiveTasksQuantity);
 
     deleteElemFromPage(id);
 }
@@ -101,7 +103,8 @@ function init() {
 function getTodos() {
     api.getTodos()
         .then(setTodos)
-        .then(renderTodos);
+        .then(renderTodos)
+        .then(displayActiveTasksQuantity);
 }
 
 function setTodos(data) {
@@ -129,6 +132,11 @@ function htmlToElement(html) {
     template.innerHTML = html.trim();
 
     return template.content.firstChild;
+}
+
+function displayActiveTasksQuantity() {
+    const incompletedQuantity = todos.filter(todo => todo.completed == false).length;
+    document.getElementById('activeTasksQuantity').innerText = incompletedQuantity;
 }
 
 function onDropdownBtnClick() {
@@ -171,10 +179,9 @@ function toggleCompletedProperty(id) {
     const currTodo = todos.find(todo => todo.id === id);
     currTodo.completed = !currTodo.completed;
 
-    api.editTodo(currTodo);
+    api.editTodo(currTodo)
+        .then(displayActiveTasksQuantity);
 
-    console.log(currTodo);
-    console.log(todos);
-
-    getDOMElementByDataId(id).classList.toggle('list__item-done');
-}
+    const currElem = getDOMElementByDataId(id);
+    currElem.classList.toggle('list__item-done');
+} 

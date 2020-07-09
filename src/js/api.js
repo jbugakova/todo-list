@@ -30,10 +30,10 @@ function deleteTodo(id) {
 
 function editTodo(todo) {
     return fetch(TODOS_URL + '/' + todo.id, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(todo)
-    });
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(todo)
+            });
 }
