@@ -1,22 +1,23 @@
 {
-  "name": "same-clothes-website",
+  "name": "todo-list",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server"
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --config webpack.dev.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jbugakova/same-clothes-website.git"
+    "url": "git+https://github.com/jbugakova/todo-list.git"
   },
   "author": "Julia Bugakova <bugakovayk@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jbugakova/same-clothes-website/issues"
+    "url": "https://github.com/jbugakova/todo-list/issues"
   },
-  "homepage": "https://github.com/jbugakova/same-clothes-website#readme",
+  "homepage": "https://github.com/jbugakova/todo-list#readme",
   "devDependencies": {
     "autoprefixer": "^9.8.4",
     "clean-webpack-plugin": "^3.0.0",
@@ -30,7 +31,8 @@
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.0.9"
   },
   "dependencies": {}
 }

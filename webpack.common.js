@@ -9,10 +9,6 @@ module.exports = {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist')
     },
-    mode: 'development',
-    devServer: {
-        contentBase: './dist'
-    },
     plugins: [
         new HtmlWebpackPlugin({
             template: './src/index.html',
@@ -20,7 +16,6 @@ module.exports = {
         }),
         new CleanWebpackPlugin()
     ],
-    devtool: 'inline-source-map',
     module: {
         rules: [
             {

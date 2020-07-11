@@ -2,6 +2,7 @@ import '../scss/styles.scss';
 
 import api from './api';
 
+const LIST_ITEM_DONE_CLASS = 'list__item-done';
 const dropdownBtn = document.querySelector('.panel__dropdown-btn');
 const dropdownList = document.querySelector('.panel__dropdown-list');
 const dropdownOverlay = document.querySelector('.panel__dropdown-overlay');
@@ -121,7 +122,7 @@ function renderTodo(todo) {
 
     const todoElement = htmlToElement(html);
     if(todo.completed) {
-        todoElement.classList.add('list__item-done');
+        todoElement.classList.add(LIST_ITEM_DONE_CLASS);
     }
 
     todoList.append(todoElement);
@@ -183,5 +184,5 @@ function toggleCompletedProperty(id) {
         .then(displayActiveTasksQuantity);
 
     const currElem = getDOMElementByDataId(id);
-    currElem.classList.toggle('list__item-done');
+    currElem.classList.toggle(LIST_ITEM_DONE_CLASS);
 } 
