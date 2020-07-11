@@ -10,7 +10,6 @@ const addTaskForm = document.querySelector('#addTaskForm');
 const todoListItemTemplate = document.querySelector('#todoListItemTemplate').innerHTML;
 const todoList = document.querySelector('#todoList');
 const todoInput = document.querySelector('.add-task-form__input');
-
 let todos = [];
 
 init();
@@ -20,7 +19,7 @@ addTaskForm.addEventListener('submit', onAddTaskFormSubmit);
 todoList.addEventListener('click', onListClick);
 
 function onDropdownClick(e) {
-    var target = e.target;
+    const target = e.target;
     switch(true) {
         case(target.classList.contains('panel__dropdown-btn') || target.classList.contains('arrow') || target.classList.contains('value')):
             onDropdownBtnClick();
@@ -59,7 +58,7 @@ function onAddTaskFormSubmit(e) {
 
         api.addTodo(todo)
             .then(addTodoToArray)
-            .then(renderTodo)
+            .then(renderTodoElement)
             .then(displayActiveTasksQuantity);
 
         addTaskForm.reset();
@@ -81,6 +80,12 @@ function deleteTodoFromArray(elem) {
 function deleteElemFromPage(id) {
     const el = getDOMElementByDataId(id);
     el.remove();
+}
+
+function renderTodoElement(todo) {
+    if(todoList.dataset.show !== 'completed') {
+        renderTodo(todo);
+    }
 }
 
 function getDOMElementByDataId(id) {
@@ -154,13 +159,20 @@ function ondropdownListClick(text, value) {
 
 function showSortedList(value) {
     todoList.innerHTML = '';
+    let currList;
+
     if(value === 'all') {
-        renderTodos(todos);
+        todoList.dataset.show = 'all';
+        currList = todos;
     } else if(value === 'completed') {
-        renderTodos(todos.filter(item => item.completed === true));
+        todoList.dataset.show = 'completed';
+        currList = todos.filter(item => item.completed === true);
     } else if(value === 'incompleted') {
-        renderTodos(todos.filter(item => item.completed === false));
+        todoList.dataset.show = 'incompleted';
+        currList = todos.filter(item => item.completed === false);
     }
+
+    renderTodos(currList);
 }
 
 function switchBtnText(text) {
@@ -184,5 +196,10 @@ function toggleCompletedProperty(id) {
         .then(displayActiveTasksQuantity);
 
     const currElem = getDOMElementByDataId(id);
-    currElem.classList.toggle(LIST_ITEM_DONE_CLASS);
-} 
+
+    if((todoList.dataset.show === 'incompleted' && currTodo.completed) || (todoList.dataset.show === 'completed' && !currTodo.completed)) {
+        currElem.remove();
+    } else if(todoList.dataset.show === 'all') {
+        currElem.classList.toggle(LIST_ITEM_DONE_CLASS);
+    }
+}
