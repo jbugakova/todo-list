@@ -1,5 +1,3 @@
-import '../scss/styles.scss';
-
 import api from './api';
 
 const LIST_ITEM_DONE_CLASS = 'list__item-done';
@@ -14,9 +12,14 @@ let todos = [];
 
 init();
 
+window.onload = function() { document.body.classList.add('loaded') };
 document.querySelector('.panel_propdown-conatiner').addEventListener('click', onDropdownClick);
 addTaskForm.addEventListener('submit', onAddTaskFormSubmit);
 todoList.addEventListener('click', onListClick);
+
+function init() {
+    getTodos();
+}
 
 function onDropdownClick(e) {
     const target = e.target;
@@ -102,10 +105,6 @@ function addTodoToArray(todo) {
     return todo;
 }
 
-function init() {
-    getTodos();
-}
-
 function getTodos() {
     api.getTodos()
         .then(setTodos)
@@ -114,6 +113,7 @@ function getTodos() {
 }
 
 function setTodos(data) {
+    console.log(data);
     return (todos = data);
 }
 

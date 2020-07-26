@@ -10,6 +10,10 @@ body {
     background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     font-family: 'Roboto', sans-serif;
     padding: 60px 0;
+
+    &.loaded .transitioned {
+        transition: .2s ease-in-out;
+    }
 }
 
 .default-content-width {
@@ -92,7 +96,6 @@ body {
             visibility: hidden;
             opacity: 0;
             transform: translateY(-3%);
-            transition: .2s ease-out;
             
             &.active {
                 visibility: visible;
@@ -138,7 +141,6 @@ body {
         text-transform: capitalize;
         border-radius: 5px;
         border: none;
-        transition: .2s ease-in-out;
 
         &:hover {
             cursor: pointer;
