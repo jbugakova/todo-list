@@ -146,7 +146,7 @@ function displayActiveTasksQuantity() {
 }
 
 function onDropdownBtnClick() {
-    dropdownBtn.classList.toggle('open');
+    toggleDropDownBtnOpenClass();
     dropdownList.classList.toggle('active');
     dropdownOverlay.classList.toggle('active');
 }
@@ -155,6 +155,11 @@ function ondropdownListClick(text, value) {
     switchBtnText(text);
     closeDropDown();
     showSortedList(value);
+    toggleDropDownBtnOpenClass();
+}
+
+function toggleDropDownBtnOpenClass() {
+    dropdownBtn.classList.toggle('open');
 }
 
 function showSortedList(value) {
@@ -181,6 +186,7 @@ function switchBtnText(text) {
 
 function onDropdownOverlayClick() {
     closeDropDown();
+    toggleDropDownBtnOpenClass();
 }
 
 function closeDropDown() {
